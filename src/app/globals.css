@@ -1,0 +1,167 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: var(--font-fraunces), "Fraunces", ui-serif, Georgia, serif;
+}
+
+:root {
+  color-scheme: light;
+  --bg: #f7f6f2;
+  --surface: #ffffff;
+  --surface-2: #f1efe9;
+  --border: #e4e1d8;
+  --text: #1c1b18;
+  --muted: #6b675d;
+  --accent: #4f46e5;
+}
+
+.dark {
+  color-scheme: dark;
+  --bg: #0f1115;
+  --surface: #171a21;
+  --surface-2: #1f232c;
+  --border: #2a2f3a;
+  --text: #ecebe7;
+  --muted: #9a9ba3;
+  --accent: #818cf8;
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.surface-2 {
+  background: var(--surface-2);
+}
+
+.border-app {
+  border-color: var(--border);
+}
+
+/* Couleur de matière passée en variable CSS : style={{ "--c": color }} */
+.subject-tint {
+  background: color-mix(in srgb, var(--c) 12%, var(--surface));
+}
+.subject-text {
+  color: var(--c);
+}
+.dark .subject-text {
+  color: color-mix(in srgb, var(--c) 55%, white);
+}
+.subject-bg {
+  background: var(--c);
+}
+.subject-border {
+  border-color: color-mix(in srgb, var(--c) 45%, transparent);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.75rem;
+  padding: 0.7rem 1.1rem;
+  font-weight: 600;
+  transition: transform 0.1s ease, opacity 0.15s ease, background 0.15s ease;
+  min-height: 44px;
+}
+.btn:active {
+  transform: scale(0.98);
+}
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.btn-primary {
+  background: var(--c, var(--accent));
+  color: white;
+}
+.btn-ghost {
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.prose-lesson h2 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 650;
+  margin: 1.4rem 0 0.5rem;
+}
+.prose-lesson h2:first-child {
+  margin-top: 0;
+}
+.prose-lesson p,
+.prose-lesson li {
+  line-height: 1.65;
+}
+.prose-lesson ul,
+.prose-lesson ol {
+  margin: 0.4rem 0 0.8rem;
+  padding-left: 1.3rem;
+}
+.prose-lesson ul {
+  list-style: disc;
+}
+.prose-lesson ol {
+  list-style: decimal;
+}
+.prose-lesson blockquote {
+  margin: 0.7rem 0;
+  padding: 0.65rem 0.9rem;
+  border-left: 4px solid var(--c, var(--accent));
+  background: var(--surface-2);
+  border-radius: 0 0.6rem 0.6rem 0;
+}
+
+input[type="text"],
+textarea {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 0.75rem;
+  padding: 0.7rem 0.9rem;
+  width: 100%;
+  font-size: 16px; /* évite le zoom automatique sur iOS */
+}
+input[type="text"]:focus,
+textarea:focus {
+  outline: 2px solid var(--c, var(--accent));
+  outline-offset: 1px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .pop-in {
+    animation: pop 0.35s ease-out;
+  }
+  @keyframes pop {
+    from {
+      transform: scale(0.92);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+}
